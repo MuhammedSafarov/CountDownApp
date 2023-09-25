@@ -104,13 +104,29 @@ body {
   gap: 0.1em;
   align-items: center;
 }
+.dots {
+  width: 30px;
+  height: 8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.dots div {
+  background-color: white;
+  width: 10px;
+  height: 10px;
+  margin: 10px;
+}
 .segment {
   display: flex;
   gap: 0.1em;
 }
 .segment-title {
-  font-size: 2rem;
+  font-size: 1.2rem;
+  margin-top: 10px;
   color: white;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 .footer {
   display: flex;
