@@ -1,15 +1,30 @@
-const countToDate = new Date().setHours(new Date().getHours() + 24);
+// import { startCountdown, resumeTime, stopTime } from "./helper";
+const countToDate = new Date().setHours(new Date().getHours() + 4);
 let stopBtn = document.querySelector(".stop-btn");
-let playBtn = document.querySelector(".play-btn");
+let resumeBtn = document.querySelector(".play-btn");
 let previousTimeBetweenDates;
 
-let myInterval = setInterval(() => {
-  const currentDate = new Date();
-  const timeBetweenDates = Math.ceil((countToDate - currentDate) / 1000);
-  flipAllCards(timeBetweenDates);
+const startCountdown = () => {
+  myInterval = setInterval(() => {
+    const currentDate = new Date();
+    const timeBetweenDates = Math.ceil((countToDate - currentDate) / 1000);
+    flipAllCards(timeBetweenDates);
+    previousTimeBetweenDates = timeBetweenDates;
+  }, 200);
+};
 
-  previousTimeBetweenDates = timeBetweenDates;
-}, 250);
+const stopTime = () => {
+  clearInterval(myInterval);
+};
+
+const resumeTime = () => {
+  clearInterval(myInterval);
+  startCountdown();
+};
+
+stopBtn.addEventListener("click", stopTime);
+resumeBtn.addEventListener("click", resumeTime);
+startCountdown();
 
 function flipAllCards(time) {
   const seconds = time % 60;
@@ -52,12 +67,3 @@ function flip(flipCard, newNumber) {
   });
   flipCard.append(topFlip, bottomFlip);
 }
-
-const stopTime = () => {
-  clearInterval(myInterval);
-};
-const playTime = () => {
-  setTimeout(myInterval, 1000);
-};
-stopBtn.addEventListener("click", stopTime);
-playBtn.addEventListener("click", playTime);
