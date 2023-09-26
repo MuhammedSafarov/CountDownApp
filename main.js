@@ -1,32 +1,12 @@
-// import { startCountdown, resumeTime, stopTime } from "./helper";
-const countToDate = new Date().setHours(new Date().getHours() + 4);
+import { startCountdown, resumeTime, stopTime } from "./btnEvents.js";
 let stopBtn = document.querySelector(".stop-btn");
 let resumeBtn = document.querySelector(".play-btn");
-let previousTimeBetweenDates;
-
-const startCountdown = () => {
-  myInterval = setInterval(() => {
-    const currentDate = new Date();
-    const timeBetweenDates = Math.ceil((countToDate - currentDate) / 1000);
-    flipAllCards(timeBetweenDates);
-    previousTimeBetweenDates = timeBetweenDates;
-  }, 200);
-};
-
-const stopTime = () => {
-  clearInterval(myInterval);
-};
-
-const resumeTime = () => {
-  clearInterval(myInterval);
-  startCountdown();
-};
 
 stopBtn.addEventListener("click", stopTime);
 resumeBtn.addEventListener("click", resumeTime);
 startCountdown();
 
-function flipAllCards(time) {
+export function flipAllCards(time) {
   const seconds = time % 60;
   const minutes = Math.floor(time / 60) % 60;
   const hours = Math.floor(time / 3600);
